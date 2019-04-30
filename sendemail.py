@@ -30,12 +30,6 @@ while True:
     schedule.run_pending()
     time.sleep(50)
 
-import config
-import sched, time
-import pandas as pd
-import xlrd
-import datetime
-
 
 localtime=time.asctime(time.localtime(time.time()))
 print("the time is " + localtime)
