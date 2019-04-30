@@ -18,5 +18,12 @@ def send_email(subject, msg):
 subject = " Test"
 msg = "Hello"
 
-send_email(subject, msg)
+schedule.every().tuesday.at("17:55").do(send_email, subject, msg)
+
+# You can out anytime inside the parehtheisis after "at".
+
+while True:
+
+    schedule.run_pending()
+    time.sleep(50)
 
