@@ -1,4 +1,4 @@
-EMAIL_ADDRESS = "makesantolalla@gmail.com" afdsa
+EMAIL_ADDRESS = "makesantolalla@gmail.com"
 
 PASSWORD = "makeproject123"
 
