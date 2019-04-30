@@ -18,17 +18,16 @@ def send_email(subject, msg):
     except:
         print("Email failed to send.")
 
-subject = " Test"
+subject = " Assignments Due"
 msg = "Hello"
 
-schedule.every().tuesday.at("17:55").do(send_email, subject, msg)
+schedule.every().monday.at("08:00").do(send_email, subject, msg)
 
-# You can out anytime inside the parehtheisis after "at".
 
 while True:
 
     schedule.run_pending()
-    time.sleep(50)
+    time.sleep(2)
 
 
 localtime=time.asctime(time.localtime(time.time()))
