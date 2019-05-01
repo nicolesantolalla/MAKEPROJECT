@@ -27,7 +27,7 @@ schedule.every().monday.at("08:00").do(send_email, subject, msg) #You can put an
 while True:  #Program need to be constantly running. But need to add sleep because computer can crash.
 
     schedule.run_pending() #imported from module "schedule"
-    time.sleep(2)  #Module will run every 2 seconds. Can put a longer time if you want the module to send you email only once a week.
+    time.sleep(2)  #Module will run every 2 seconds. Can put a longer time if you want the module to send you email only once a day.
 
 
 localtime=time.asctime(time.localtime(time.time()))
