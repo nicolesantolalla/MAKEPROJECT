@@ -1,5 +1,5 @@
-import smtplib
-import sched, time
+import smtplib #module for sending email
+import sched, time   
 import pandas as pd
 import xlrd
 import datetime
@@ -7,12 +7,12 @@ import config
 
 def send_email(subject, msg):
     try:
-        server = smtplib.SMTP('smtp.gmail.com:587')
+        server = smtplib.SMTP('smtp.gmail.com:587') #If you want to use a different email, need to find the code for that one.
         server.ehlo()
         server.starttls()
-        server.login(config.EMAIL_ADDRESS, config.PASSWORD)
-        message = "Subject: {}\n\n{}".format(subject, msg)
-        server.sendmail(config.EMAIL_ADDRESS, config.RECEIVER_ADDRESS, message)
+        server.login(config.EMAIL_ADDRESS, config.PASSWORD)  #config is from module we created. You can add any sender email, but need to allow less secure apps.
+        message = "Subject: {}\n\n{}".format(subject, msg)  #Use this configuration so the Subject appears on the "Subject" line.
+        server.sendmail(config.EMAIL_ADDRESS, config.RECEIVER_ADDRESS, message) #need to add RECEIVER_EMAIL to config module.
         server.quit()
         print("Success Email sent!")
     except:
@@ -21,13 +21,13 @@ def send_email(subject, msg):
 subject = " Assignments Due"
 msg = "Hello"
 
-schedule.every().monday.at("08:00").do(send_email, subject, msg)
+schedule.every().monday.at("08:00").do(send_email, subject, msg) #You can put any day and time, and module will work.
 
 
-while True:
+while True:  #Program need to be constantly running. But need to add sleep because computer can crash.
 
-    schedule.run_pending()
-    time.sleep(2)
+    schedule.run_pending() #imported from module "schedule"
+    time.sleep(2)  #Module will run every 2 seconds. Can put a longer time if you want the module to send you email only once a week.
 
 
 localtime=time.asctime(time.localtime(time.time()))
