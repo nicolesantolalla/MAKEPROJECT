@@ -44,9 +44,16 @@ print("the time is " + localtime)
 file_location= "/Users/Daniela/PycharmProjects/untitled/tasks.xlsx"
 workbook= xlrd.open_workbook(file_location)
 sheet=workbook.sheet_by_index(0)
-due=sheet.cell_value(1,1)
-print(due)
+due=sheet.cell_value(9,1)
+due_date=xlrd.xldate_as_tuple(due, 0)
+due_date2=datetime.datetime(*due_date)
+print(due_date2.strftime("%Y-%m-%d"))
 
 now = datetime.datetime.now()
 print ("Current date and time using str method of datetime object:")
-print (now.strftime("%Y-%m-%d %H:%M"))
+now_date=(now.strftime("%Y-%m-%d"))
+print(now_date)
+
+
+if due_date2.strftime("%Y-%m-%d")== (now.strftime("%Y-%m-%d")):
+    send_email(subject, msg)
