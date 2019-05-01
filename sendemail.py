@@ -1,6 +1,5 @@
 import smtplib #module for sending email
 import sched, time   #Sched module to schedule the program to run every certani time
-import pandas as pd
 import xlrd
 import datetime
 import config #module we created with login information. 
@@ -47,19 +46,40 @@ print("the time is " + localtime)
 #df = pd.read_excel ('tasks.xlsx')
 #print(df)
 
+
+def send_email(subject, msg):
+    try:
+        server = smtplib.SMTP('smtp.gmail.com:587')
+        server.ehlo()
+        server.starttls()
+        server.login(config.EMAIL_ADDRESS, config.PASSWORD)
+        message = "Subject: {}\n\n{}".format(subject, msg)
+        server.sendmail(config.EMAIL_ADDRESS, config.RECEIVER_ADDRESS, message)
+        server.quit()
+        print("Success Email sent!")
+    except:
+        print("Email failed to send.")
+
+subject = "Things to do today"
+msg="hello"
+
+def excel_date(date1):
+    temp = datetime.datetime(1899, 12, 30)
+    delta = date1 - temp
+    return(math.floor((delta.days) + (float(delta.seconds) / 86400)))
+
 file_location= "/Users/Daniela/PycharmProjects/untitled/tasks.xlsx"
 workbook= xlrd.open_workbook(file_location)
 sheet=workbook.sheet_by_index(0)
-due=sheet.cell_value(9,1)
-due_date=xlrd.xldate_as_tuple(due, 0)
-due_date2=datetime.datetime(*due_date)
-print(due_date2.strftime("%Y-%m-%d"))
 
 now = datetime.datetime.now()
-print ("Current date and time using str method of datetime object:")
-now_date=(now.strftime("%Y-%m-%d"))
-print(now_date)
+now_date=(now.strftime("%Y-%m-%d %H:%m"))
+today = datetime.date.today()
 
-
-if due_date2.strftime("%Y-%m-%d")== (now.strftime("%Y-%m-%d")):
-    send_email(subject, msg)
+for i in range(sheet.nrows):
+    if sheet.cell_value(i, 1)==int(excel_date(datetime.datetime.now())):
+        msg=str(sheet.cell_value(i, 0))
+        print(msg)
+        send_email(subject, msg)
+    else:
+        print('not today')
