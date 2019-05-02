@@ -5,14 +5,6 @@ import datetime
 import config #module we created with login information. 
 import math
 
-schedule.every().monday.at("08:00").do(send_email, subject, msg) #You can put any day and time, and module will work.
-schedule.every().tuesday.at("08:00").do(send_email, subject, msg) #We want the program to send an email every day in the morning, so we added every day.
-schedule.every().wednesday.at("08:00").do(send_email, subject, msg)
-schedule.every().thursday.at("08:00").do(send_email, subject, msg)
-schedule.every().friday.at("08:00").do(send_email, subject, msg)
-schedule.every().saturday.at("08:00").do(send_email, subject, msg)
-schedule.every().sunday.at("08:00").do(send_email, subject, msg)
-
 
 while True:  #Program need to be constantly running. But need to add sleep because computer can crash.
 
