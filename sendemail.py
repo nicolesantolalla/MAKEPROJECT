@@ -6,20 +6,6 @@ import config #module we created with login information.
 import math
 
 
-while True:  #Program need to be constantly running. But need to add sleep because computer can crash.
-
-    schedule.run_pending() #imported from module "schedule"
-    time.sleep(2)  #Module will run every 2 seconds. Can put a longer time if you want the module to send you email only once a day.
-
-
-#if localtime.startswith("Tue"):
-    #send_email(subject, msg)
-
-#localtime= localtime+604800
-
-#df = pd.read_excel ('tasks.xlsx')
-#print(df)
-
 
 def send_email(subject, msg):
     try:
@@ -57,3 +43,7 @@ for i in range(sheet.nrows):  #code works, but we need to make it send the email
         send_email(subject, msg)
     else:
         print('not today')
+
+while True:  #Program need to be constantly running. But need to add sleep because computer can crash.
+  schedule.run_pending() #imported from module "schedule"
+  time.sleep(2)  #Module will run every 2 seconds. Can put a longer time if you want the module to send you email only once a day.
