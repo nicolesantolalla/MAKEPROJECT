@@ -36,16 +36,18 @@ sheet=workbook.sheet_by_index(0)
 
 now = datetime.datetime.now()
 
-List=[]
-for i in range(sheet.nrows):
-    if sheet.cell_value(i, 1)==int(excel_date(now)):
-        List.append(str(sheet.cell_value(i, 0)))
-        # we made a list of the tasks so we could display more than one task due the same day
-        msg="Your tasks for today are: \n" + '\n'.join(map(str, List))
-        #this puts an enter (\n) between each task
-    else:
-        print('not today')
-schedule.every().day.at("00:01").do(send_email, subject, msg)
+def check_for_assignment():
+    List=[]
+    for i in range(sheet.nrows):
+        if sheet.cell_value(i, 1)==int(excel_date(now)):
+            List.append(str(sheet.cell_value(i, 0)))
+            # we made a list of the tasks so we could display more than one task due the same day
+            msg="Your tasks for today are: \n" + '\n'.join(map(str, List))
+            #this puts an enter (\n) between each task
+        else:
+            print('not today') # this is only to check the console is performing the for loop at the time scheudled
+    send_email(subject, msg)
+schedule.every().day.at("00:33").do(check_for_assignment)
 
 
 while True:
