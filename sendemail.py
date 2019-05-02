@@ -36,13 +36,14 @@ sheet=workbook.sheet_by_index(0)
 
 now = datetime.datetime.now()
 
-for i in range(sheet.nrows):  #code works, but we need to make it send the email at certain time
-    if sheet.cell_value(i, 1)==int(excel_date(now)): # and schedule.every().day.at("08:00").do(send_email, subject, msg):
-        msg="Your tasks for today are: \n"+ str(sheet.cell_value(i, 0))
-        print(msg)
-        send_email(subject, msg)
+List=[]
+for i in range(sheet.nrows):
+    if sheet.cell_value(i, 1)==int(excel_date(now)): 
+        List.append(str(sheet.cell_value(i, 0))) # we made a list of the tasks so we could display more than one task due the same day
+        msg="Your tasks for today are: \n" + '\n'.join(map(str, List)) #this puts an enter (\n) between each task
     else:
         print('not today')
+send_email(subject, msg)
 
 while True:  #Program need to be constantly running. But need to add sleep because computer can crash.
   schedule.run_pending() #imported from module "schedule"
