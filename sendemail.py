@@ -21,7 +21,6 @@ def send_email(subject, msg):
         print("Email failed to send.")
 
 
-
 subject = "Things to do today"
 msg =""
 
@@ -35,10 +34,6 @@ file_location= "/Users/nicolesantolalla/PycharmProjects/MAKE1/tasks (1).xlsx"
 workbook= xlrd.open_workbook(file_location)
 sheet=workbook.sheet_by_index(0)
 
-#when = schedule.every().day.at("21:24").do(send_email, subject, msg)
-#send_time = datetime.time(21, 52, 00)
-
-
 now = datetime.datetime.now()
 
 List=[]
@@ -51,7 +46,6 @@ for i in range(sheet.nrows):
     else:
         print('not today')
 schedule.every().day.at("00:01").do(send_email, subject, msg)
-
 
 
 while True:
