@@ -3,6 +3,7 @@ import sched, time   #Sched module to schedule the program to run every certani 
 import xlrd
 import datetime
 import config #module we created with login information. 
+import math
 
 def send_email(subject, msg):
     try:
