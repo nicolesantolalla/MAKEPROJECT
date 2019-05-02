@@ -44,6 +44,9 @@ def excel_date(date1):
 
 workbook= xlrd.open_workbook("tasks.xlsx")
 sheet=workbook.sheet_by_index(0)
+#when = schedule.every().day.at("21:24").do(send_email, subject, msg)
+#send_time = datetime.time(21, 52, 00)
+
 
 now = datetime.datetime.now()
 
