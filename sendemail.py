@@ -35,9 +35,6 @@ while True:  #Program need to be constantly running. But need to add sleep becau
     time.sleep(2)  #Module will run every 2 seconds. Can put a longer time if you want the module to send you email only once a day.
 
 
-localtime=time.asctime(time.localtime(time.time()))
-print("the time is " + localtime)
-
 #if localtime.startswith("Tue"):
     #send_email(subject, msg)
 
