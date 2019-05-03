@@ -29,9 +29,7 @@ def excel_date(date1):
     delta = date1 - temp
     return(math.floor((delta.days) + (float(delta.seconds) / 86400)))
 
-file_location= "/Users/nicolesantolalla/PycharmProjects/MAKE1/tasks (1).xlsx"
-# need to copy path of file
-workbook= xlrd.open_workbook(file_location)
+workbook= xlrd.open_workbook("tasks.xlsx")
 sheet=workbook.sheet_by_index(0)
 
 now = datetime.datetime.now()
