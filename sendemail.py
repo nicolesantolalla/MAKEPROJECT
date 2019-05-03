@@ -21,7 +21,7 @@ def send_email(subject, msg):
         print("Email failed to send.")
 
 
-subject = "Things to do today"
+subject = "Due Today"
 msg =""
 
 def excel_date(date1):
