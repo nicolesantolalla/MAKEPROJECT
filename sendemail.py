@@ -45,7 +45,7 @@ def check_for_assignment():
         else:
             print('not today') # this is only to check the console is performing the for loop at the time scheudled
     send_email(subject, msg)
-schedule.every().day.at("00:33").do(check_for_assignment)
+schedule.every().day.at("07:00").do(check_for_assignment)
 
 
 while True:
